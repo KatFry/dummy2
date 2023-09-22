@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy2-deployment
+spec:
+  replicas: 3  # Adjust the number of replicas as needed
+  selector:
+    matchLabels:
+      app: dummy2
+  template:
+    metadata:
+      labels:
+        app: dummy2
+    spec:
+      containers:
+      - name: dummy2-container
+        image: registry.k8s.io/pause:3.9
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3434  # Specify the port your application listens on
+
+# helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+# kubectl port-forward service/prometheus-server 9090:80  
